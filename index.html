@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotton University — Internship Certificate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+
+    <aside class="editor">
+      <div class="editor-header">
+        <div>
+          <p class="eyebrow">Department of Statistics</p>
+          <h1>Internship Certificate</h1>
+          <p class="muted">Certificate generator</p>
+        </div>
+      </div>
+
+      <form id="certificateForm" autocomplete="off">
+
+        <section class="form-section">
+          <h2>Certificate</h2>
+
+          <label>
+            Certificate No.
+            <input id="certificateNo" type="text" placeholder="CU/STAT/INT/2026/001">
+          </label>
+
+          <label>
+            Date
+            <input id="issueDate" type="date">
+          </label>
+
+          <label>
+            Place
+            <input id="place" type="text" value="Guwahati">
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Student</h2>
+
+          <label>
+            Student Name
+            <input id="studentName" type="text" placeholder="Student's full name">
+          </label>
+
+          <div class="two-column">
+            <label>
+              Roll No.
+              <input id="rollNo" type="text" placeholder="Roll number">
+            </label>
+
+            <label>
+              Registration No.
+              <input id="registrationNo" type="text" placeholder="Registration number">
+            </label>
+          </div>
+
+          <label>
+            Semester
+            <select id="semester">
+              <option value="">Select semester</option>
+              <option>1st Semester</option>
+              <option>2nd Semester</option>
+              <option>3rd Semester</option>
+              <option>4th Semester</option>
+              <option>5th Semester</option>
+              <option>6th Semester</option>
+              <option>7th Semester</option>
+              <option>8th Semester</option>
+            </select>
+          </label>
+
+          <label>
+            Programme / Course
+            <input id="program" type="text" placeholder="e.g. B.Sc. Statistics">
+          </label>
+
+          <label>
+            Institute / College / University
+            <input id="institute" type="text" placeholder="Name of student's institute">
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Internship</h2>
+
+          <p class="muted" style="margin: 0 0 12px;">Host (fixed): Department of Statistics, Cotton University</p>
+
+          <div class="two-column">
+            <label>
+              Start Date
+              <input id="startDate" type="date">
+            </label>
+
+            <label>
+              End Date
+              <input id="endDate" type="date">
+            </label>
+          </div>
+
+          <label>
+            Internship Topic
+            <input id="topic" type="text" placeholder="e.g. Data Analysis using R">
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Signatories</h2>
+
+          <label>
+            Faculty In Charge
+            <input id="facultyName" type="text" placeholder="Faculty member's name">
+          </label>
+
+          <label>
+            Head of the Department
+            <input id="hodName" type="text" placeholder="Head's name">
+          </label>
+        </section>
+
+        <section class="form-section options">
+          <h2>Options</h2>
+
+          <label class="checkbox-row">
+            <input id="showRegistration" type="checkbox" checked>
+            <span>Show registration number</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input id="showCertificateNo" type="checkbox" checked>
+            <span>Show certificate number</span>
+          </label>
+        </section>
+
+        <div class="actions">
+          <button type="button" class="primary" id="printBtn">Print / Save PDF</button>
+          <button type="button" class="secondary" id="resetBtn">Reset</button>
+        </div>
+
+        <p class="save-status" id="saveStatus">Changes are saved locally in your browser.</p>
+      </form>
+    </aside>
+
+    <main class="preview-area">
+      <div class="preview-toolbar">
+        <span>A4 Preview</span>
+        <span>100% scale</span>
+      </div>
+
+      <div class="page-wrap">
+        <article class="certificate" id="certificate">
+
+          <div class="outer-border"></div>
+          <div class="inner-border"></div>
+
+          <div class="certificate-number" id="previewCertificateNo">
+            Certificate No.: —
+          </div>
+
+          <header class="certificate-header">
+<div class="logo-wrap">
+  <img
+    id="universityLogo"
+    src="assets/cotton-university-logo.png"
+    alt="Cotton University Logo"
+  >
+</div>
+
+            <div class="university-name">COTTON UNIVERSITY</div>
+            <div class="university-location">Guwahati, Assam – 781001</div>
+
+            <div class="accent-rule wide"></div>
+
+            <div class="department-name">DEPARTMENT OF STATISTICS</div>
+
+            <div class="accent-rule short"></div>
+          </header>
+
+          <section class="certificate-title">
+            <h1>CERTIFICATE OF SUCCESSFUL<br>COMPLETION OF INTERNSHIP</h1>
+            <div class="title-rule"></div>
+          </section>
+
+          <section class="certificate-body">
+
+            <p class="intro">This is to certify that</p>
+
+            <div class="student-name" id="previewStudentName">STUDENT NAME</div>
+
+            <div class="student-meta">
+              <span><strong>Roll No.:</strong> <span id="previewRollNo">—</span></span>
+              <span id="registrationBlock">
+                <strong>Registration No.:</strong> <span id="previewRegistrationNo">—</span>
+              </span>
+            </div>
+
+            <p>
+              a student of <strong><span id="previewProgram">__________</span>, <span id="previewSemester">________ Semester</span></strong>,
+              <strong id="previewInstitute">__________</strong>, has successfully
+              completed a <strong>One-Month Internship</strong> at
+            </p>
+
+            <div class="organisation">Department of Statistics, Cotton University</div>
+
+            <p>
+              during the period from
+              <strong id="previewStartDate">__________</strong>
+              to
+              <strong id="previewEndDate">__________</strong>.
+            </p>
+
+            <p class="topic-line">
+              on the topic entitled
+              <strong id="previewTopic">__________</strong>.
+            </p>
+
+            <p>
+              The internship was undertaken as a part of the
+              <strong>experiential learning component of the undergraduate curriculum</strong>
+              prescribed in accordance with the
+              <strong>National Education Policy (NEP) 2020</strong>.
+            </p>
+
+            <p>
+              During the internship, the student participated in the activities
+              assigned by the Department of Statistics, Cotton University and satisfactorily fulfilled
+              the academic requirements of the internship programme.
+            </p>
+
+            <p>
+              The Department appreciates the student's sincere participation and
+              successful completion of the internship and wishes them success in their
+              future academic and professional pursuits.
+            </p>
+
+          </section>
+
+          <section class="signature-section">
+
+            <div class="signature">
+              <div class="signature-line"></div>
+              <div class="signature-title">Faculty In Charge</div>
+              <div class="signature-name" id="previewFacultyName">Faculty In Charge</div>
+              <div>Department of Statistics</div>
+              <div>Cotton University</div>
+            </div>
+
+            <div class="signature">
+              <div class="signature-line"></div>
+              <div class="signature-title">Head of the Department</div>
+              <div class="signature-name" id="previewHodName">Head of the Department</div>
+              <div>Department of Statistics</div>
+              <div>Cotton University</div>
+            </div>
+
+          </section>
+
+          <footer class="certificate-footer">
+            <div>
+              <strong>Date:</strong>
+              <span id="previewIssueDate">__________</span>
+            </div>
+
+            <div>
+              <strong>Place:</strong>
+              <span id="previewPlace">Guwahati</span>
+            </div>
+          </footer>
+
+          <div class="footer-rule"></div>
+          <div class="department-footer">
+            Department of Statistics · Cotton University · Guwahati, Assam
+          </div>
+
+        </article>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

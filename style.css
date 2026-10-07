@@ -1,0 +1,517 @@
+/* =========================================================
+   Cotton University Internship Certificate
+   Offline certificate generator
+   ========================================================= */
+
+:root {
+  --navy: #24374b;
+  --ink: #20252a;
+  --muted: #70757a;
+  --line: #777;
+  --paper: #ffffff;
+  --canvas: #eef1f4;
+  --panel: #ffffff;
+  --input: #f7f8fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+}
+
+/* ---------------------------------------------------------
+   Editor
+   --------------------------------------------------------- */
+
+.editor {
+  background: var(--panel);
+  border-right: 1px solid #d9dde2;
+  padding: 26px 24px;
+  overflow-y: auto;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.editor-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e2e5e8;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.editor h1 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -.02em;
+}
+
+.muted {
+  color: var(--muted);
+  margin: 5px 0 0;
+  font-size: 13px;
+}
+
+.form-section {
+  margin-bottom: 22px;
+}
+
+.form-section h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--navy);
+  margin: 0 0 12px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 11px;
+  border: 1px solid #d7dce1;
+  border-radius: 6px;
+  background: var(--input);
+  color: var(--ink);
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--navy);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(36, 55, 75, .08);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 500;
+}
+
+.checkbox-row input {
+  width: auto;
+  margin: 0;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 9px;
+  margin-top: 25px;
+}
+
+.actions button {
+  border: 0;
+  border-radius: 6px;
+  padding: 11px 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.primary {
+  background: var(--navy);
+  color: white;
+}
+
+.secondary {
+  background: #e9ecef;
+  color: var(--ink);
+}
+
+.actions button:hover {
+  filter: brightness(.96);
+}
+
+.save-status {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+  margin-top: 12px;
+}
+
+/* ---------------------------------------------------------
+   Preview area
+   --------------------------------------------------------- */
+
+.preview-area {
+  min-width: 0;
+  overflow: auto;
+}
+
+.preview-toolbar {
+  height: 48px;
+  background: white;
+  border-bottom: 1px solid #d9dde2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  color: #666;
+  font-size: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.page-wrap {
+  min-height: calc(100vh - 48px);
+  padding: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ---------------------------------------------------------
+   A4 certificate
+   --------------------------------------------------------- */
+
+.certificate {
+  width: 210mm;
+  height: 297mm;
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 22mm 24mm 17mm;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .15);
+  overflow: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.outer-border,
+.inner-border {
+  position: absolute;
+  pointer-events: none;
+}
+
+.outer-border {
+  inset: 6.5mm;
+  border: 1.25px solid #414141;
+}
+
+.inner-border {
+  inset: 8.5mm;
+  border: .55px solid #777;
+}
+
+.certificate-header {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-wrap {
+  height: 21mm;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-wrap img {
+  max-height: 20mm;
+  max-width: 30mm;
+  object-fit: contain;
+}
+
+.university-name {
+  font-size: 21pt;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: .02em;
+  margin-top: 2mm;
+}
+
+.university-location {
+  font: 10.5pt/1.3 "Segoe UI", Arial, sans-serif;
+  margin-top: 1mm;
+}
+
+.accent-rule {
+  height: .8px;
+  background: var(--navy);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.accent-rule.wide {
+  width: 72%;
+  margin-top: 3.2mm;
+}
+
+.department-name {
+  font: 700 12pt/1.3 "Segoe UI", Arial, sans-serif;
+  letter-spacing: .06em;
+  margin-top: 2.4mm;
+}
+
+.accent-rule.short {
+  width: 38%;
+  height: .55px;
+  margin-top: 2mm;
+}
+
+.certificate-number {
+  position: absolute;
+  z-index: 2;
+  top: 11mm;
+  right: 13mm;
+  text-align: right;
+  font: 9pt/1.2 "Segoe UI", Arial, sans-serif;
+}
+
+.certificate-title {
+  text-align: center;
+  margin-top: 6mm;
+}
+
+.certificate-title h1 {
+  font-size: 20pt;
+  line-height: 1.18;
+  margin: 0;
+  font-weight: 700;
+}
+
+.title-rule {
+  width: 52%;
+  height: .8px;
+  background: var(--navy);
+  margin: 4mm auto 0;
+}
+
+.certificate-body {
+  width: 88%;
+  margin: 6mm auto 0;
+  text-align: center;
+  font-size: 11.8pt;
+  line-height: 1.42;
+}
+
+.certificate-body p {
+  margin: 0 0 3.2mm;
+}
+
+.intro {
+  margin-bottom: 2.5mm !important;
+}
+
+.student-name {
+  font-size: 18pt;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  margin-bottom: 3.2mm;
+}
+
+.student-meta {
+  display: flex;
+  justify-content: center;
+  gap: 12mm;
+  font: 10.5pt/1.3 "Segoe UI", Arial, sans-serif;
+  margin-bottom: 5mm;
+}
+
+.organisation {
+  font-size: 14pt;
+  font-weight: 700;
+  margin: 2mm 0 3mm;
+  min-height: 5mm;
+}
+
+.topic-line {
+  font-style: italic;
+}
+
+.signature-section {
+  width: 90%;
+  position: absolute;
+  left: 5%;
+  bottom: 26mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18mm;
+  text-align: center;
+  font: 9.5pt/1.35 "Segoe UI", Arial, sans-serif;
+}
+
+.signature-line {
+  width: 52mm;
+  border-top: .7px solid #444;
+  margin: 0 auto 1.8mm;
+}
+
+.signature-title {
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.signature-name {
+  min-height: 13px;
+  margin-top: .6mm;
+}
+
+.certificate-footer {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 16mm;
+  display: flex;
+  justify-content: space-between;
+  font: 9.5pt/1.3 "Segoe UI", Arial, sans-serif;
+}
+
+.footer-rule {
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: 11.5mm;
+  height: .5px;
+  background: #607080;
+}
+
+.department-footer {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 8.5mm;
+  text-align: center;
+  color: #70757a;
+  font: 7.5pt/1.2 "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 1050px) {
+  .app-shell {
+    grid-template-columns: 320px 1fr;
+  }
+
+  .page-wrap {
+    padding: 20px;
+  }
+
+  .certificate {
+    transform-origin: top center;
+    transform: scale(.82);
+    margin-bottom: -53mm;
+    margin-right: -38mm;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    display: block;
+  }
+
+  .editor {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid #d9dde2;
+  }
+
+  .preview-toolbar {
+    position: static;
+  }
+
+  .page-wrap {
+    overflow: auto;
+    justify-content: flex-start;
+  }
+}
+
+/* ---------------------------------------------------------
+   Printing
+   --------------------------------------------------------- */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    background: white;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .editor,
+  .preview-toolbar {
+    display: none !important;
+  }
+
+  .app-shell,
+  .preview-area,
+  .page-wrap {
+    display: block;
+    width: 210mm;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+  }
+
+  .certificate {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 22mm 24mm 17mm;
+    box-shadow: none;
+    transform: none !important;
+    page-break-after: avoid;
+  }
+}
